@@ -14,6 +14,18 @@ discontinued PySDL project. In contrast to PySDL, it has no licensing
 restrictions, nor does it rely on C code, but uses ctypes instead.
 
 
+Current build status
+====================
+
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/pysdl2-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/pysdl2-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/pysdl2-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/pysdl2-feedstock)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/pysdl2-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/pysdl2-feedstock/branch/master)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pysdl2/badges/version.svg)](https://anaconda.org/conda-forge/pysdl2)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pysdl2/badges/downloads.svg)](https://anaconda.org/conda-forge/pysdl2)
+
 Installing pysdl2
 =================
 
@@ -69,18 +81,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/pysdl2-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/pysdl2-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/pysdl2-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/pysdl2-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/pysdl2-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/pysdl2-feedstock/branch/master)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pysdl2/badges/version.svg)](https://anaconda.org/conda-forge/pysdl2)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pysdl2/badges/downloads.svg)](https://anaconda.org/conda-forge/pysdl2)
 
 
 Updating pysdl2-feedstock
