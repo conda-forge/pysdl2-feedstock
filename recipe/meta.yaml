@@ -1,6 +1,6 @@
 {% set name = "PySDL2" %}
-{% set version = "0.9.5" %}
-{% set md5 = "dc135eb78930a9ebf6e66e2a893db7f0" %}
+{% set version = "0.9.6" %}
+{% set md5 = "0ff0489089b5941fe77f7cdd5ff912bd" %}
 
 package:
   name: {{ name|lower }}

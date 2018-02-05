@@ -1,7 +1,8 @@
---- sdl2/__init__.py
-+++ sdl2/__init__.py
-@@ -1,4 +1,16 @@
+--- sdl2/__init__.py	2017-09-30 10:09:52.000000000 +0200
++++ sdl2/__init__.py	2018-02-05 10:03:53.000000000 +0100
+@@ -1,4 +1,17 @@
  """SDL2 wrapper package"""
++
 +# Direct this module to Ana/Miniconda's lib folder, where the SDL2 libraries
 +# can be found.
 +import os
