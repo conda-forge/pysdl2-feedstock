@@ -25,6 +25,7 @@ requirements:
     - python
   run:
     - sdl2
+    - python
 
 test:
   imports:
