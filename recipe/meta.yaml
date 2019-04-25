@@ -18,11 +18,11 @@ build:
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
-  host:
-    - pip
   build:
     - patch  # [win]
     - setuptools
+    - pip
+  host:
     - pip
   run:
     - sdl2
