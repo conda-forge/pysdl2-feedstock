@@ -15,15 +15,16 @@ source:
 
 build:
   number: 1
-  script: python setup.py install --record record.txt
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
+  host:
+    - pip
   build:
     - patch  # [win]
     - sdl2
     - python
     - setuptools
-
   run:
     - sdl2
     - python
