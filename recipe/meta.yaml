@@ -37,7 +37,7 @@ test:
 about:
   home: https://github.com/marcusva/py-sdl2
   license: Public Domain/ZLIB
-  license_file: LICENSE.txt
+  license_file: doc/copying.rst
   summary: "A wrapper around the SDL2 library"
   description: |
     PySDL2 is a wrapper around the SDL2 library and as such similar to the
