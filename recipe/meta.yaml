@@ -20,11 +20,9 @@ build:
 requirements:
   build:
     - patch  # [win]
-    - setuptools
-    - pip
-    - python
   host:
     - pip
+    - python
   run:
     - sdl2
 
