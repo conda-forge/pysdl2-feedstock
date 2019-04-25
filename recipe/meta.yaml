@@ -22,12 +22,10 @@ requirements:
     - pip
   build:
     - patch  # [win]
-    - sdl2
-    - python
     - setuptools
+    - pip
   run:
     - sdl2
-    - python
 
 test:
   imports:
