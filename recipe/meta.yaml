@@ -22,6 +22,7 @@ requirements:
     - patch  # [win]
     - setuptools
     - pip
+    - python
   host:
     - pip
   run:
