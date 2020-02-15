@@ -1,6 +1,6 @@
 {% set name = "PySDL2" %}
-{% set version = "0.9.6" %}
-{% set md5 = "0ff0489089b5941fe77f7cdd5ff912bd" %}
+{% set version = "0.9.7" %}
+{% set md5 = "e77e9c15589e15b6c877555f34a429ab" %}
 
 package:
   name: {{ name|lower }}
@@ -14,7 +14,7 @@ source:
     - sdl2path.patch
 
 build:
-  number: 1
+  number: 0
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
