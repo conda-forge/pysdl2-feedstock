@@ -14,7 +14,7 @@ source:
     - sdl2path.patch
 
 build:
-  number: 2
+  number: 3
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
