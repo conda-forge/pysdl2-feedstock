@@ -24,12 +24,23 @@ requirements:
     - python
 
 test:
+  requires:
+    - pytest
+    - sdl2_ttf
+    - sdl2_mixer
+    - sdl2_image
+    - sdl2_gfx
+    - numpy
+    - pillow
+  source_files:
+    - pytest.ini
+    - sdl2/test
+    - sdl2/test/resources/*
+    - sdl2/test/*.py
   imports:
     - sdl2
-## Tests disabled till some problems are solved. Tests require graphical system
-## (X, cocoa, directx) which are not available in the CI's
-#  commands:
-#    - python -c "import sdl2.test; sdl2.test.run()"
+  commands:
+    - SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software python -m pytest -vvl -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
