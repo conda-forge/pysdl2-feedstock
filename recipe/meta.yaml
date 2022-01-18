@@ -33,7 +33,7 @@ test:
 
 about:
   home: https://github.com/marcusva/py-sdl2
-  license: Public Domain/ZLIB
+  license: CC0-1.0
   license_file: doc/copying.rst
   summary: A wrapper around the SDL2 library
   description: |
