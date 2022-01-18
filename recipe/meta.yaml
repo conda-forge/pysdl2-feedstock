@@ -32,14 +32,9 @@ test:
     - sdl2_gfx
     - numpy
     - pillow
-  source_files:
-    - sdl2/test
-    - sdl2/test/resources/*
-    - sdl2/test/*.py
-  imports:
     - sdl2
   commands:
-    - SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software python -m pytest -vvl -rxXP
+    - SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software python -m pytest --pyargs sdl2.test -vvl -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
