@@ -12,6 +12,10 @@ source:
   md5: {{ md5 }}
 
 build:
+  script_env:
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=dummy
+    - SDL_RENDER_DRIVER=software
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
@@ -24,6 +28,10 @@ requirements:
     - python
 
 test:
+  script_env:
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=dummy
+    - SDL_RENDER_DRIVER=software
   requires:
     - pytest
     - sdl2_ttf
@@ -34,7 +42,7 @@ test:
     - pillow
     - sdl2
   commands:
-    - SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software python -m pytest --pyargs sdl2.test -vvl -rxXP
+    - python -m pytest --pyargs sdl2.test -vvl -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
