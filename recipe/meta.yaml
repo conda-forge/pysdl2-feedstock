@@ -33,7 +33,6 @@ test:
     - numpy
     - pillow
   source_files:
-    - pytest.ini
     - sdl2/test
     - sdl2/test/resources/*
     - sdl2/test/*.py
