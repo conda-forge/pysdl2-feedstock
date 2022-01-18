@@ -37,7 +37,7 @@ test:
     - sdl2_ttf
     - sdl2_mixer
     - sdl2_image
-    - sdl2_gfx
+#   - sdl2_gfx  # Removed until macOS CI framerate issue fixed upstream
     - numpy
     - pillow
     - sdl2
