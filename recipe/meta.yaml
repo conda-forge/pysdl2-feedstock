@@ -39,7 +39,8 @@ test:
     - sdl2
   commands:
     # Note: 'not GetRevision' currently needed for conda Windows sdl2
-    - python -m pytest --pyargs sdl2.test -vvl -k 'not GetRevision' -rxXP
+    # 'not ExtImage' needed because of upstream bug in tests when missing sdl_image
+    - python -m pytest --pyargs sdl2.test -vvl -k 'not GetRevision and not ExtImage' -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
