@@ -28,10 +28,6 @@ requirements:
     - python
 
 test:
-  script_env:
-    - SDL_VIDEODRIVER=dummy
-    - SDL_AUDIODRIVER=dummy
-    - SDL_RENDER_DRIVER=software
   requires:
     - pytest
     - sdl2_ttf
