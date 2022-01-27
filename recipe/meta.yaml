@@ -10,8 +10,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   md5: {{ md5 }}
-#  patches:
-#    - sdl2path.patch
+  patches:
+    - no_sdl2dll.patch
 
 build:
   script_env:
@@ -34,7 +34,7 @@ test:
     - pytest
     - sdl2_ttf
     - sdl2_mixer
-    - sdl2_image
+#   - sdl2_image  # waiting on conda-forge SDL2_image fixes
     - sdl2_gfx
     - numpy
     - pillow
@@ -58,4 +58,3 @@ extra:
   recipe-maintainers:
     - dschreij
     - a-hurst
-
