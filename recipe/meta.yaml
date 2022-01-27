@@ -10,10 +10,14 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   md5: {{ md5 }}
-  patches:
-    - sdl2path.patch
+#  patches:
+#    - sdl2path.patch
 
 build:
+  script_env:
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=dummy
+    - SDL_RENDER_DRIVER=software
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
@@ -26,16 +30,21 @@ requirements:
     - python
 
 test:
-  imports:
+  requires:
+    - pytest
+    - sdl2_ttf
+    - sdl2_mixer
+    - sdl2_image
+    - sdl2_gfx
+    - numpy
+    - pillow
     - sdl2
-## Tests disabled till some problems are solved. Tests require graphical system
-## (X, cocoa, directx) which are not available in the CI's
-#  commands:
-#    - python -c "import sdl2.test; sdl2.test.run()"
+  commands:
+    - python -m pytest --pyargs sdl2.test -vvl -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
-  license: Public Domain/ZLIB
+  license: CC0-1.0
   license_file: doc/copying.rst
   summary: A wrapper around the SDL2 library
   description: |
