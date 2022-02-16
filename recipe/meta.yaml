@@ -1,21 +1,25 @@
 {% set name = "PySDL2" %}
-{% set version = "0.9.7" %}
-{% set md5 = "e77e9c15589e15b6c877555f34a429ab" %}
+{% set version = "0.9.11" %}
+{% set md5 = "0e2ce2f4d131ce74db4b8e08147b39ad" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn:  {{ name }}-{{ version }}.tar.gz
+  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   md5: {{ md5 }}
   patches:
-    - sdl2path.patch
+    - no_sdl2dll.patch
 
 build:
-  number: 3
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script_env:
+    - SDL_VIDEODRIVER=dummy
+    - SDL_AUDIODRIVER=dummy
+    - SDL_RENDER_DRIVER=software
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
@@ -26,18 +30,23 @@ requirements:
     - python
 
 test:
-  imports:
+  requires:
+    - pytest
+    - sdl2_ttf
+    - sdl2_mixer
+#   - sdl2_image  # waiting on conda-forge SDL2_image fixes
+    - sdl2_gfx
+    - numpy
+    - pillow
     - sdl2
-## Tests disabled till some problems are solved. Tests require graphical system
-## (X, cocoa, directx) which are not available in the CI's
-#  commands:
-#    - python -c "import sdl2.test; sdl2.test.run()"
+  commands:
+    - python -m pytest --pyargs sdl2.test -vvl -rxXP
 
 about:
   home: https://github.com/marcusva/py-sdl2
-  license: Public Domain/ZLIB
+  license: CC0-1.0
   license_file: doc/copying.rst
-  summary: "A wrapper around the SDL2 library"
+  summary: A wrapper around the SDL2 library
   description: |
     PySDL2 is a wrapper around the SDL2 library and as such similar to the
     discontinued PySDL project. In contrast to PySDL, it has no licensing
@@ -49,4 +58,3 @@ extra:
   recipe-maintainers:
     - dschreij
     - a-hurst
-
