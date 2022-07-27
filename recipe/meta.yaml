@@ -1,6 +1,6 @@
 {% set name = "PySDL2" %}
-{% set version = "0.9.11" %}
-{% set md5 = "0e2ce2f4d131ce74db4b8e08147b39ad" %}
+{% set version = "0.9.13" %}
+{% set md5 = "cc9b91d543cd275865aacf2140b64973" %}
 
 package:
   name: {{ name|lower }}
@@ -18,7 +18,7 @@ build:
     - SDL_VIDEODRIVER=dummy
     - SDL_AUDIODRIVER=dummy
     - SDL_RENDER_DRIVER=software
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
