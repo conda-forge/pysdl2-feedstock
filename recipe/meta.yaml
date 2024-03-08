@@ -38,13 +38,13 @@ test:
     - pytest
     - sdl2_ttf
     - sdl2_mixer
-#   - sdl2_image  # waiting on conda-forge SDL2_image fixes
+    - sdl2_image
     - sdl2_gfx
     - numpy
     - pillow
     - sdl2
   commands:
-    - python -m pytest --pyargs sdl2.test -vvl -rxXP
+    - python -m pytest --pyargs sdl2.test -vvl -rxXP  # [python_impl != 'pypy']
 
 about:
   home: https://github.com/marcusva/py-sdl2
