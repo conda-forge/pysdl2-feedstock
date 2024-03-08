@@ -12,6 +12,7 @@ source:
   md5: {{ md5 }}
   patches:
     - no_sdl2dll.patch
+    - 267.patch
 
 build:
   script_env:
