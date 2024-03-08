@@ -14,6 +14,10 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.10.* *_cpython
+python_impl:
+- cpython
+sdl2_image:
+- '2'
 sdl2_mixer:
 - '2'
 sdl2_ttf:
@@ -23,3 +27,4 @@ target_platform:
 zip_keys:
 - - python
   - numpy
+  - python_impl
