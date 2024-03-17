@@ -19,7 +19,7 @@ build:
     - SDL_VIDEODRIVER=dummy
     - SDL_AUDIODRIVER=dummy
     - SDL_RENDER_DRIVER=software
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
