@@ -1,21 +1,30 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+macos_machine:
+- x86_64-apple-darwin13.4.0
 numpy:
-- '1.21'
+- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
 - 3.8.* *_cpython
+python_impl:
+- cpython
+sdl2_image:
+- '2'
 sdl2_mixer:
 - '2'
 sdl2_ttf:
 - '2'
 target_platform:
-- win-64
+- osx-64
 zip_keys:
 - - python
   - numpy
+  - python_impl

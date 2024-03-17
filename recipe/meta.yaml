@@ -12,6 +12,7 @@ source:
   md5: {{ md5 }}
   patches:
     - no_sdl2dll.patch
+    - 267.patch
 
 build:
   script_env:
@@ -22,6 +23,9 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - pip
     - python
@@ -34,13 +38,14 @@ test:
     - pytest
     - sdl2_ttf
     - sdl2_mixer
-#   - sdl2_image  # waiting on conda-forge SDL2_image fixes
+    # tests on Windows are broken
+    - sdl2_image  # [not win]
     - sdl2_gfx
     - numpy
     - pillow
     - sdl2
   commands:
-    - python -m pytest --pyargs sdl2.test -vvl -rxXP
+    - python -m pytest --pyargs sdl2.test -vvl -rxXP  # [python_impl != 'pypy']
 
 about:
   home: https://github.com/marcusva/py-sdl2
