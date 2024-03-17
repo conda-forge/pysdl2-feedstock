@@ -12,8 +12,6 @@ python:
 - 3.9.* *_73_pypy
 python_impl:
 - pypy
-sdl2_image:
-- '2'
 sdl2_mixer:
 - '2'
 sdl2_ttf:
