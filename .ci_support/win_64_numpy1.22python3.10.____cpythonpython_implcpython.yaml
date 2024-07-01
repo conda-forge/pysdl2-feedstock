@@ -12,8 +12,6 @@ python:
 - 3.10.* *_cpython
 python_impl:
 - cpython
-sdl2_image:
-- '2'
 sdl2_mixer:
 - '2'
 sdl2_ttf:
