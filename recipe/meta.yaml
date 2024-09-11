@@ -29,6 +29,7 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
   run:
     - sdl2
     - python
