@@ -1,5 +1,5 @@
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -28,3 +28,4 @@ zip_keys:
 - - python
   - numpy
   - python_impl
+  - channel_sources
