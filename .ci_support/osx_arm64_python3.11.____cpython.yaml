@@ -15,7 +15,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.13.* *_cp313
+- 3.11.* *_cpython
 python_impl:
 - cpython
 sdl2_image:
@@ -28,5 +28,4 @@ target_platform:
 - osx-arm64
 zip_keys:
 - - python
-  - numpy
-  - python_impl
+  - channel_sources
