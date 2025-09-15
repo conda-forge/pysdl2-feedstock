@@ -45,6 +45,8 @@ test:
     - numpy
     - pillow
     - sdl2
+    # Workaround for https://github.com/py-sdl/py-sdl2/issues/286
+    - freetype <2.14.0
   commands:
     - python -m pytest --pyargs sdl2.test -vvl -rxXP  # [python_impl != 'pypy']
 
