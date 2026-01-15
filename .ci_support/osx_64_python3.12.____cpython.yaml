@@ -26,6 +26,3 @@ sdl2_ttf:
 - '2'
 target_platform:
 - osx-64
-zip_keys:
-- - python
-  - channel_sources
