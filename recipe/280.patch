@@ -1,0 +1,26 @@
+From 2969a56bca036b1c6d69e14d76ed772c4732117b Mon Sep 17 00:00:00 2001
+From: Anonymous Maarten <anonymous.maarten@gmail.com>
+Date: Fri, 14 Mar 2025 23:02:08 +0100
+Subject: [PATCH] Remove test setting hint with empty string
+
+SDL2 allows a hint with an empty name, SDL3 does not.
+Because of this, sdl2-compat has a different behavior.
+
+Since a hint with no name does not make sense, remove the test.
+---
+ sdl2/test/hints_test.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/sdl2/test/hints_test.py b/sdl2/test/hints_test.py
+index 34fae9e..a4b0ed5 100644
+--- a/sdl2/test/hints_test.py
++++ b/sdl2/test/hints_test.py
+@@ -32,8 +32,6 @@ def test_SDL_SetHint(with_sdl):
+     assert sdl2.SDL_GetHint(b"TEST") == b"32"
+     assert sdl2.SDL_SetHint(b"TEST", b"abcdef") == 1
+     assert sdl2.SDL_GetHint(b"TEST") == b"abcdef"
+-    assert sdl2.SDL_SetHint(b"", b"hi") == 1
+-    assert sdl2.SDL_GetHint(b"") == b"hi"
+ 
+ def test_SDL_SetHintWithPriority(with_sdl):
+     tst_hints = [
