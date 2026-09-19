@@ -76,18 +76,19 @@ if EXIST LICENSE.txt (
 )
 if NOT [%HOST_PLATFORM%] == [%BUILD_PLATFORM%] (
     if [%CROSSCOMPILING_EMULATOR%] == [] (
-        set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --no-test"
+        set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --test skip"
     )
 )
 
 if NOT [%flow_run_id%] == [] (
-        set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --extra-meta flow_run_id=%flow_run_id% remote_url=%remote_url% sha=%sha%"
+        set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --extra-meta flow_run_id=%flow_run_id% --extra-meta remote_url=%remote_url% --extra-meta sha=%sha%"
 )
 
 call :end_group
 
 :: Build the recipe
 echo Building recipe
+rattler-build.exe build --recipe "recipe" -m .ci_support\%CONFIG%.yaml %EXTRA_CB_OPTIONS% --build-platform %BUILD_PLATFORM% --target-platform %HOST_PLATFORM%
 if !errorlevel! neq 0 exit /b !errorlevel!
 
 call :start_group "Inspecting artifacts"

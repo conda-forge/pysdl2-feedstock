@@ -8,8 +8,6 @@ channel_targets:
 - conda-forge main
 macos_machine:
 - x86_64-apple-darwin13.4.0
-numpy:
-- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -18,11 +16,5 @@ python:
 - 3.12.* *_cpython
 python_impl:
 - cpython
-sdl2_image:
-- '2'
-sdl2_mixer:
-- '2'
-sdl2_ttf:
-- '2'
 target_platform:
 - osx-64

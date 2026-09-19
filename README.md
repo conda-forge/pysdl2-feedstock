@@ -11,12 +11,11 @@ Summary: A wrapper around the SDL2 library
 
 Development: https://bitbucket.org/marcusva/py-sdl2
 
-Documentation: https://pysdl2.readthedocs.io
+Documentation: https://pysdl2.readthedocs.io/
 
 PySDL2 is a wrapper around the SDL2 library and as such similar to the
 discontinued PySDL project. In contrast to PySDL, it has no licensing
 restrictions, nor does it rely on C code, but uses ctypes instead.
-
 
 Current build status
 ====================
