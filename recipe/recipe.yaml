@@ -25,7 +25,7 @@ source:
     - 291.patch
 
 build:
-  number: 1
+  number: 2
   script:
     env:
       SDL_VIDEODRIVER: dummy
@@ -36,9 +36,9 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
+      then:
+        - python
+        - cross-python_${{ target_platform }}
   host:
     - pip
     - python
