@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.lower() }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.lower() }}-{{ version }}.tar.gz
   md5: {{ md5 }}
   patches:
     - no_sdl2dll.patch
@@ -18,7 +18,7 @@ build:
     - SDL_VIDEODRIVER=dummy
     - SDL_AUDIODRIVER=dummy
     - SDL_RENDER_DRIVER=software
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
