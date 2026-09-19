@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  name: PySDL2
+  version: "0.9.17"
+  md5: 8dd193d3b01d949b256b5bb95c277dc6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | lower }}-${{ version }}.tar.gz
+  md5: ${{ md5 }}
+  file_name: ${{ name }}-${{ version }}.tar.gz
+  patches:
+    - no_sdl2dll.patch
+    - 280.patch
+
+build:
+  number: 1
+  script:
+    env:
+      SDL_VIDEODRIVER: dummy
+      SDL_AUDIODRIVER: dummy
+      SDL_RENDER_DRIVER: software
+    content: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+  host:
+    - pip
+    - python
+    - setuptools
+  run:
+    - sdl2
+    - python
+
+tests:
+  - requirements:
+      run:
+        - pytest
+        - sdl2_ttf
+        - sdl2_mixer
+        - if: not win
+          then: sdl2_image
+        - sdl2_gfx
+        - numpy
+        - pillow
+        - sdl2
+        - freetype <2.14.0
+    script:
+      - if: python_impl != 'pypy'
+        then: python -m pytest --pyargs sdl2.test -vvl -rxXP
+
+about:
+  license: CC0-1.0
+  license_file: doc/copying.rst
+  summary: A wrapper around the SDL2 library
+  description: |
+    PySDL2 is a wrapper around the SDL2 library and as such similar to the
+    discontinued PySDL project. In contrast to PySDL, it has no licensing
+    restrictions, nor does it rely on C code, but uses ctypes instead.
+  homepage: https://github.com/marcusva/py-sdl2
+  repository: https://bitbucket.org/marcusva/py-sdl2
+  documentation: https://pysdl2.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - dschreij
+    - a-hurst
+    - Tobias-Fischer
+
