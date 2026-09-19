@@ -65,8 +65,14 @@ tests:
         SDL_AUDIODRIVER: dummy
         SDL_RENDER_DRIVER: software
       content:
-        - if: python_impl != 'pypy'
+        - if: python_impl != 'pypy' and not win
           then: python -m pytest --pyargs sdl2.test -vvl -rxXP
+        # sdl2_image is deliberately not installed on Windows (see above).
+        # Since pytest 9, importorskip() only skips on ModuleNotFoundError,
+        # not on the plain ImportError that sdl2.sdlimage raises when the
+        # DLL is missing, so sdlimage_test.py now errors at collection time.
+        - if: python_impl != 'pypy' and win
+          then: python -m pytest --pyargs sdl2.test -vvl -rxXP --ignore-glob=*sdlimage_test.py
 
 about:
   license: CC0-1.0
