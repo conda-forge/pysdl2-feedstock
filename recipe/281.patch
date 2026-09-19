@@ -1,0 +1,35 @@
+From 28ce2c8b1ce756a1320807c8deb4ea93826f7239 Mon Sep 17 00:00:00 2001
+From: Cameron Gutman <aicommander@gmail.com>
+Date: Sun, 16 Mar 2025 19:17:34 -0500
+Subject: [PATCH] Fix test_get_events failure with sdl2-compat
+
+The test meant to call SDL_FlushEvents() to flush all events, but
+instead only flushed SDL_FIRSTEVENT. This mistake was harmless
+until SDL3, which does have queued events at this point that must
+be flushed for the test expectations to be met.
+---
+ sdl2/test/sdl2ext_test.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sdl2/test/sdl2ext_test.py b/sdl2/test/sdl2ext_test.py
+index 5d63ac7..7303b07 100644
+--- a/sdl2/test/sdl2ext_test.py
++++ b/sdl2/test/sdl2ext_test.py
+@@ -3,7 +3,7 @@
+ import sdl2
+ from sdl2 import ext as sdl2ext
+ from sdl2 import (
+-    SDL_Quit, SDL_WasInit, SDL_FlushEvent, SDL_UserEvent, SDL_PushEvent, 
++    SDL_Quit, SDL_WasInit, SDL_FlushEvents, SDL_UserEvent, SDL_PushEvent,
+     SDL_Event, SDL_USEREVENT, SDL_FIRSTEVENT, SDL_LASTEVENT, SDL_QUIT,
+ )
+ 
+@@ -58,7 +58,7 @@ def test_init_quit():
+     sdl2ext.quit()
+ 
+ def test_get_events(with_sdl_ext):
+-    SDL_FlushEvent(SDL_FIRSTEVENT, SDL_LASTEVENT)
++    SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT)
+     for x in range(12):
+         event = SDL_Event()
+         event.type = SDL_USEREVENT + x
