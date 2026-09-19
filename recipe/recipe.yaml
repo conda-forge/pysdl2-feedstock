@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: PySDL2
+  version: "0.9.17"
+  md5: 8dd193d3b01d949b256b5bb95c277dc6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | lower }}-${{ version }}.tar.gz
+  md5: ${{ md5 }}
+  patches:
+    - no_sdl2dll.patch
+    # Test fixes merged upstream after the 0.9.17 release, needed to make the
+    # test suite pass against sdl2-compat (SDL3) and FreeType >= 2.14.0.
+    - 280.patch
+    - 281.patch
+    - 283.patch
+    - 284.patch
+    - 288.patch
+    - 290.patch
+    - 291.patch
+
+build:
+  number: 1
+  script:
+    env:
+      SDL_VIDEODRIVER: dummy
+      SDL_AUDIODRIVER: dummy
+      SDL_RENDER_DRIVER: software
+    content: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+  host:
+    - pip
+    - python
+    - setuptools
+  run:
+    - sdl2
+    - python
+
+tests:
+  - requirements:
+      run:
+        - pytest
+        - sdl2_ttf
+        - sdl2_mixer
+        - sdl2_image
+        - sdl2_gfx
+        - numpy
+        - pillow
+        - sdl2
+    script:
+      env:
+        SDL_VIDEODRIVER: dummy
+        SDL_AUDIODRIVER: dummy
+        SDL_RENDER_DRIVER: software
+      content:
+        - if: python_impl != 'pypy'
+          then: python -m pytest --pyargs sdl2.test -vvl -rxXP
+
+about:
+  license: CC0-1.0
+  license_file: doc/copying.rst
+  summary: A wrapper around the SDL2 library
+  description: |
+    PySDL2 is a wrapper around the SDL2 library and as such similar to the
+    discontinued PySDL project. In contrast to PySDL, it has no licensing
+    restrictions, nor does it rely on C code, but uses ctypes instead.
+  homepage: https://github.com/py-sdl/py-sdl2
+  repository: https://github.com/py-sdl/py-sdl2
+  documentation: https://pysdl2.readthedocs.io
+
+extra:
+  feedstock-name: pysdl2
+  recipe-maintainers:
+    - dschreij
+    - a-hurst
+    - Tobias-Fischer

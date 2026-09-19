@@ -1,0 +1,62 @@
+From 0c52bbbe295e838c435a55d18afbd3d7ca5a31c1 Mon Sep 17 00:00:00 2001
+From: Anonymous Maarten <anonymous.maarten@gmail.com>
+Date: Thu, 20 Mar 2025 21:57:22 +0100
+Subject: [PATCH 1/2] SDL_SetWindowBrightness is not guaranteed to succeed
+
+---
+ sdl2/test/video_test.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/sdl2/test/video_test.py b/sdl2/test/video_test.py
+index a15cfb9..2486da6 100644
+--- a/sdl2/test/video_test.py
++++ b/sdl2/test/video_test.py
+@@ -760,7 +760,6 @@ def test_SDL_GetSetWindowBrightness(window):
+             val = sdl2.SDL_GetWindowBrightness(window)
+             assert round(abs(val-b), 7) == 0
+             count += 1
+-    assert count > 0
+ 
+ def test_SDL_GetSetWindowOpacity(window):
+     opacity = c_float(0)
+
+From d1317f4e9b9ae31de230482d7f44a5daa2488410 Mon Sep 17 00:00:00 2001
+From: Anonymous Maarten <anonymous.maarten@gmail.com>
+Date: Thu, 20 Mar 2025 21:57:39 +0100
+Subject: [PATCH 2/2] SDL_SetWindowGammaRamp is not guaranteed to succeed
+
+---
+ sdl2/test/video_test.py | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/sdl2/test/video_test.py b/sdl2/test/video_test.py
+index 2486da6..14b5e65 100644
+--- a/sdl2/test/video_test.py
++++ b/sdl2/test/video_test.py
+@@ -793,16 +793,16 @@ def test_SDL_GetSetWindowGammaRamp(window):
+     vals = (Uint16 * 256)()
+     pixels.SDL_CalculateGammaRamp(0.5, vals)
+     ret = sdl2.SDL_SetWindowGammaRamp(window, vals, vals, vals)
+-    assert ret == 0, _check_error_msg()
+-    r = (Uint16 * 256)()
+-    g = (Uint16 * 256)()
+-    b = (Uint16 * 256)()
+-    ret = sdl2.SDL_GetWindowGammaRamp(window, r, g, b)
+-    assert ret == 0, _check_error_msg()
+-    for i in range(len(vals)):
+-        assert r[i] == vals[i]
+-        assert g[i] == vals[i]
+-        assert b[i] == vals[i]
++    if ret == 0:
++        r = (Uint16 * 256)()
++        g = (Uint16 * 256)()
++        b = (Uint16 * 256)()
++        ret = sdl2.SDL_GetWindowGammaRamp(window, r, g, b)
++        assert ret == 0, _check_error_msg()
++        for i in range(len(vals)):
++            assert r[i] == vals[i]
++            assert g[i] == vals[i]
++            assert b[i] == vals[i]
+ 
+ @pytest.mark.skip("not implemented")
+ @pytest.mark.skipif(sdl2.dll.version < 2004, reason="not available")
